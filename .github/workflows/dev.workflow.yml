@@ -25,7 +25,7 @@ jobs:
       - name: Start MongoDB Test Realm
         uses: supercharge/mongodb-github-action@1.11.0
         with:
-          mongodb-version: ${{ matrix.mongodb-version }}
+          mongodb-version: 7.0
       - name: Cypress run E2E
         uses: cypress-io/github-action@v6
         with:

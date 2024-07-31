@@ -21,9 +21,14 @@ jobs:
         run: npm install
       - name: Cypress run E2E
         uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm run start
       - name: Cypress run components
         uses: cypress-io/github-action@v6
         with:
+          build: npm run build
+          start: npm run start
           component: true
         
 

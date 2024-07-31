@@ -31,13 +31,8 @@ jobs:
       - name: Cypress run E2E
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build && npm run seed
+          build: npm run build, npm run seed
           start: npm run start
-      - name: Cypress run components
-        uses: cypress-io/github-action@v6
-        with:
-          build: npm run build
-          start: npm run start
-          component: true
+          component: true #Should run both E2E & Component testing
         
 

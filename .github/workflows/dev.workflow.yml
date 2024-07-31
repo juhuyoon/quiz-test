@@ -26,12 +26,12 @@ jobs:
         uses: supercharge/mongodb-github-action@1.11.0
         with:
           mongodb-version: 7.0
-      - name: Insert seed data for testing
-        run: npm run seed 
+      # - name: Insert seed data for testing
+      #   run: npm run seed 
       - name: Cypress run E2E
         uses: cypress-io/github-action@v6
         with:
-          build: npm run build
+          build: npm run build && npm run seed
           start: npm run start
       - name: Cypress run components
         uses: cypress-io/github-action@v6

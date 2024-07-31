@@ -1,14 +1,14 @@
-name: Challenge Module - Deployment
+name: Challenge Module - Test check
 
-# Run Deployment post closing
+# Run tests for PRs
 on:
   pull_request:
-    types: closed
     branches:
+      - develop # If you have a develop branch before main branch
       - main
 
 jobs:
-  render-deploy:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -19,8 +19,7 @@ jobs:
           node-version: 20.x
       - name: install dependencies
         run: npm install
-      - name: Render Deploy Action
-        uses: johnbeynon/render-deploy-action@v0.0.8
-        with:
-          service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.MY_RENDER_API_KEY }}
+      - name: run test
+        run: npm run test
+        
+

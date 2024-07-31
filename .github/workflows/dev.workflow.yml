@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        mongodb-version: ['8.0']
+        mongodb-version: ['6.0', '7.0', '8.0']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

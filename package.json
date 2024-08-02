@@ -10,6 +10,7 @@
     "build": "concurrently \"cd server && npm run build\" \"cd client && npm run build\"",
     "render-build": "npm install && npm run build",
     "test": "npx cypress run --browser electron",
+    "test-component": "npx cypress run --component",
     "test-gui": "npx cypress open",
     "lint": "eslint server && eslint client/src --ext ts,tsx --report-unused-disable-directives --max-warning 0",
     "eslint": "eslint server && eslint client/src"

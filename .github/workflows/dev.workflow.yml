@@ -4,35 +4,27 @@ name: Challenge Module - Test check
 on:
   pull_request:
     branches:
-      - develop # If you have a develop branch before main branch
-      - main
+      - develop # Run tests for PRs against develop branch
 
 jobs:
   test:
     runs-on: ubuntu-latest
-    # strategy:
-    #   matrix:
-    #     mongodb-version: ['6.0', '7.0', '8.0']
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Use Node.js 20.x
+      - name: CI and CD using Node ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 20.x
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
       - name: install dependencies
-        run: npm install
-      - name: Start MongoDB Test Realm
-        uses: supercharge/mongodb-github-action@1.11.0
-        with:
-          mongodb-version: 7.0
-      # - name: Insert seed data for testing
-      #   run: npm run seed 
-      - name: Cypress run E2E
+        run: npm ci
+      - name: Cypress run component tests
         uses: cypress-io/github-action@v6
         with:
           build: npm run build
           start: npm run start
-          component: true #Should run both E2E & Component testing
-        
-
+          component: true #Should run Component testing
